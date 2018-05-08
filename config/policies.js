@@ -9,14 +9,19 @@
  */
 
 module.exports.policies = {
-
-  /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions, unless overridden.       *
-  * (`true` allows public access)                                            *
-  *                                                                          *
-  ***************************************************************************/
-
-  // '*': true,
-
+	
+	/***************************************************************************
+	 *                                                                          *
+	 * Default policy for all controllers and actions, unless overridden.       *
+	 * (`true` allows public access)                                            *
+	 *                                                                          *
+	 ***************************************************************************/
+	
+	// '*': true,
+	UserController : {
+		'*': 'login',
+		'login': true,
+		'create': true    // for dev context, everyone can add their user
+	},
+	
 };

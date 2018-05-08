@@ -49,6 +49,9 @@ module.exports.routes = {
 	'DELETE     /api/user/:id':     'UserController.destroy',
 	'PATCH      /api/user/:id':     'UserController.update',
 	
+	'POST       /api/login':        'UserController.login',
+	'POST       /api/logout':       'UserController.logout',
+	
 	'GET        /api/role':         'RoleController.getAll',
 	'PUT        /api/role':         'RoleController.create',
 	'DELETE     /api/role/:id':     'RoleController.destroy',

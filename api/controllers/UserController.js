@@ -13,7 +13,11 @@ module.exports = {
 			
 			let role = await Role.findOrCreate({name: 'user'}, {name: 'user'}); // default role
 			let user = await User.create(Object.assign(req.body, {role: role.id})).fetch();
-			return res.json(user);
+			
+			return res.status(200).json({
+				user: user,
+				token: jwTokenService.issue({id: user.id})
+			});
 			
 		} catch (err) {
 			sails.log.error(err);
@@ -68,6 +72,30 @@ module.exports = {
 			await User.update({id: req.param('id')}).set(req.body);
 			return res.ok();
 		} catch (err) {
+			sails.log.error(err.raw);
+			return res.status(500).json(err);
+		}
+		
+	},
+	
+	login: async(req, res) => {
+		try {
+			let user = await User.findOne({username: req.body.username});
+			
+			if(!user)
+				return res.status(404).json('user '+req.body.username+' not found');
+			
+			
+			
+			if(!User.verifyPassword(user, req.body.password))
+				return res.status(403).json('password mismatch');
+			
+			return res.status(200).json({
+				user: user,
+				token: jwTokenService.issue({id: user.id})
+			})
+			
+		}   catch (err) {
 			sails.log.error(err.raw);
 			return res.status(500).json(err);
 		}

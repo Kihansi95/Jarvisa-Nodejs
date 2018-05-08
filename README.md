@@ -1,27 +1,58 @@
-# jarvisa-nodejs
+# Project JARVINSA - nodejs mission
 
-a [Sails v1](https://sailsjs.com) application
+## Getting started
 
+First you will need Nodejs and its npm package in your environment.
+* [For Windows, iOS](https://nodejs.org/en/download/)
+* [For others environments (Ubuntu, Debian, ...)](https://nodejs.org/en/download/package-manager/)
 
-### Links
+Then you will need a mongodb
+* [Mongodb](https://www.mongodb.com/download-center#community)
 
-+ [Get started](https://sailsjs.com/get-started)
-+ [Sails framework documentation](https://sailsjs.com/documentation)
-+ [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
-+ [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
-+ [Community support options](https://sailsjs.com/support)
-+ [Professional / enterprise options](https://sailsjs.com/enterprise)
+Test if you have npm 
+```console
+backend > npm -v
+```
 
+Install sails from npm
+```console
+backend > npm install sails -g
+```
 
-### Version info
+Since sails is completely downloaded, install npm dependencies
+```console
+backend > npm install
+```
 
-This app was originally generated on Mon Apr 09 2018 23:37:24 GMT+0200 (Paris, Madrid (heure d’été)) using Sails v1.0.0.
+## Launch application
 
-<!-- Internally, Sails used [`sails-generate@1.15.18`](https://github.com/balderdashy/sails-generate/tree/v1.15.18/lib/core-generators/new). -->
+Now you can launch the server
+```console
+backend > node app.js
+```
 
+If you want to be professional, launch in mode production
+```console
+backend > node app.js --prod
+```
 
+Normally the app will listen in the port 1337. You can personalize it in when launch `sails lift --port=80`
 
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
+## API Documentation
 
+Since this is a RestAPI app, each time when you go to any url that need to be authenticated, you will need first to login or create an account, which will give you the token. The response will be like the following:
+```json
+{
+    "user": {
+        "username": "username",
+        "password": "$2a$10$j/JYBo.1YL9U3XPaSwQ79urGVbHD8q8z6aanqMqXwvnmT1eQSAcBi",
+        "email": "toto@gmail.com",
+        "createdAt": "2017-11-20T16:51:21.266Z",
+        "updatedAt": "2017-11-20T16:51:21.266Z",
+        "id": "5a130809a809dd68196bb005"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhMTMwODA5YTgwOWRkNjgxOTZiYjAwNSIsImlhdCI6MTUxMTE5NzQ5NSwiZXhwIjoxNTExMTk3NTU1fQ.NtGO9Ns-lvhsWd0oeyB756K1T_A3xV5_1E5WrsIgeHs"
+}
+```
+
+Copy your token (which is the jwt token) and send it along each request that need the authentification in Bearer Token. (Champ Authorization)
