@@ -25,7 +25,7 @@ module.exports.routes = {
 	 ***************************************************************************/
 	
 	'/': {
-		view: 'pages/homepage'
+		view: 'pages/dashboard'
 	},
 	
 	/***************************************************************************
@@ -56,9 +56,15 @@ module.exports.routes = {
 	'PUT        /api/role':         'RoleController.create',
 	'DELETE     /api/role/:id':     'RoleController.destroy',
 	
+	'GET        /api/data':         'DataController.getAll',
+	'PUT        /api/data':         'DataController.create',
+	'GET        /api/data/:id':     'DataController.get',
+	'DELETE     /api/data/:id':     'DataController.destroy',
+	
 	//  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
 	//  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
 	//  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
+	'/data/subscribe': 'DataController.subscribe'
 	
 	
 	//  ╔╦╗╦╔═╗╔═╗

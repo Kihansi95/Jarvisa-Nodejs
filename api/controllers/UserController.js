@@ -31,7 +31,7 @@ module.exports = {
 		try {
 			
 			let user = await User.findOne(req.param('id')).populate('role');
-			return res.json(user);
+			return res.status(200).json(user);
 			
 		} catch (err) {
 			
@@ -46,7 +46,7 @@ module.exports = {
 		
 		try {
 			let users = await User.find().populate('role');
-			return res.json(users);
+			return res.status(200).json(users);
 		} catch (err) {
 			
 			sails.log.error(err.raw);
@@ -57,7 +57,7 @@ module.exports = {
 	
 	destroy: async(req, res) => {
 		try {
-			await User.destroy({id: req.param('id')});
+			await User.destroy({id: req.param('id')}).fetch();
 			return res.ok();
 		} catch (err) {
 			sails.log.error(err.raw);
@@ -69,7 +69,7 @@ module.exports = {
 	
 	update: async (req, res) => {
 		try {
-			await User.update({id: req.param('id')}).set(req.body);
+			await User.update({id: req.param('id')}).set(req.body).fetch();
 			return res.ok();
 		} catch (err) {
 			sails.log.error(err.raw);
