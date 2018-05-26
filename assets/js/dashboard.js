@@ -4,7 +4,7 @@ dataApp.controller('DataCtrl', ['$scope', '$resource', '$timeout', function($sco
 	
 	$scope.dataEntries = $resource('/data').query();
 	
-	io.socket.get('/data/subscribe', function(data, jwr) {
+	io.socket.get('/ws/data/subscribe', function(data, jwr) {
 		
 		io.socket.on('new_entry', function(new_data) {
 			
