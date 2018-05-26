@@ -12,7 +12,7 @@ module.exports = {
 		//  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
 		//  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
 		//  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-		icon: {
+		from: {
 			type: 'string'
 		},
 		
@@ -21,7 +21,7 @@ module.exports = {
 		},
 		
 		content: {
-			type: 'string'
+			type: 'json'
 		}
 		
 		//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

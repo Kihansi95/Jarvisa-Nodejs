@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Jarvinsa Dashboard</title>
+
+	<!-- Viewport mobile tag for sensible mobile support -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+	<!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.1.2/collection/icon/icon.css" rel="stylesheet">
+	<link rel="stylesheet" href="/styles/AdminLTE.min.css">
+	<link rel="stylesheet" href="/styles/skin-red.min.css">
+	<!--STYLES-->
+	<link rel="stylesheet" href="/styles/AdminLTE.min.css">
+	<link rel="stylesheet" href="/styles/importer.css">
+	<link rel="stylesheet" href="/styles/skin-red.min.css">
+	<!--STYLES END-->
+
+	<!-- Google Font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body class="skin-red hold-transition sidebar-mini">
+
+<header class="main-header">
+	<!-- Logo -->
+	<a href="#" class="logo">
+		<!-- mini logo for sidebar mini 50x50 pixels -->
+		<span class="logo-mini">JI</span>
+		<!-- logo for regular state and mobile devices -->
+		<span class="logo-lg">Jarv<b>INSA</b></span>
+	</a>
+	<!-- Header Navbar: style can be found in header.less -->
+	<nav class="navbar navbar-static-top">
+		<!-- Sidebar toggle button-->
+		<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+			<span class="sr-only">Toggle navigation</span>
+		</a>
+
+	</nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+	<!-- sidebar: style can be found in sidebar.less -->
+	<section class="sidebar">
+		<!-- Sidebar user panel -->
+		<div class="user-panel">
+			<div class="pull-left image">
+				<img src="/images/logo-square.png" class="img-square" alt="User Image">
+			</div>
+			<div class="pull-left info">
+				Eclipse <p>OM2M</p>
+			</div>
+		</div>
+		<!-- search form -->
+		<form action="#" method="get" class="sidebar-form">
+			<div class="input-group">
+				<input type="text" name="q" class="form-control" placeholder="Search...">
+				<span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fas fa-search"></i>
+                </button>
+              </span>
+			</div>
+		</form>
+		<!-- /.search form -->
+		<!-- sidebar menu: : style can be found in sidebar.less -->
+		<ul class="sidebar-menu" data-widget="tree">
+			<li class="header">MAIN NAVIGATION</li>
+			<li class="active treeview">
+				<a href="#">
+					<i class="fas fa-dashboard"></i> <span>Dashboard</span>
+					<span class="pull-right-container">
+              <i class="fas fa-angle-left pull-right"></i>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li class="active"><a href="index.html"><i class="fas fa-circle-o"></i> Dashboard v1</a></li>
+					<li><a href="index2.html"><i class="fas fa-circle-o"></i> Dashboard v2</a></li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fas fa-files-o"></i>
+					<span>Layout Options</span>
+					<span class="pull-right-container">
+              <span class="label label-primary pull-right">4</span>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="pages/layout/top-nav.html"><i class="fas fa-circle-o"></i> Top Navigation</a></li>
+					<li><a href="pages/layout/boxed.html"><i class="fas fa-circle-o"></i> Boxed</a></li>
+					<li><a href="pages/layout/fixed.html"><i class="fas fa-circle-o"></i> Fixed</a></li>
+					<li><a href="pages/layout/collapsed-sidebar.html"><i class="fas fa-circle-o"></i> Collapsed Sidebar</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="pages/widgets.html">
+					<i class="fas fa-th"></i> <span>Widgets</span>
+					<span class="pull-right-container">
+              <small class="label pull-right bg-green">new</small>
+            </span>
+				</a>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fas fa-pie-chart"></i>
+					<span>Charts</span>
+					<span class="pull-right-container">
+              <i class="fas fa-angle-left pull-right"></i>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="pages/charts/chartjs.html"><i class="fas fa-circle-o"></i> ChartJS</a></li>
+					<li><a href="pages/charts/morris.html"><i class="fas fa-circle-o"></i> Morris</a></li>
+					<li><a href="pages/charts/flot.html"><i class="fas fa-circle-o"></i> Flot</a></li>
+					<li><a href="pages/charts/inline.html"><i class="fas fa-circle-o"></i> Inline charts</a></li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fas fa-laptop"></i>
+					<span>UI Elements</span>
+					<span class="pull-right-container">
+              <i class="fas fa-angle-left pull-right"></i>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="pages/UI/general.html"><i class="fas fa-circle-o"></i> General</a></li>
+					<li><a href="pages/UI/icons.html"><i class="fas fa-circle-o"></i> Icons</a></li>
+					<li><a href="pages/UI/buttons.html"><i class="fas fa-circle-o"></i> Buttons</a></li>
+					<li><a href="pages/UI/sliders.html"><i class="fas fa-circle-o"></i> Sliders</a></li>
+					<li><a href="pages/UI/timeline.html"><i class="fas fa-circle-o"></i> Timeline</a></li>
+					<li><a href="pages/UI/modals.html"><i class="fas fa-circle-o"></i> Modals</a></li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fas fa-edit"></i> <span>Forms</span>
+					<span class="pull-right-container">
+              <i class="fas fa-angle-left pull-right"></i>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="pages/forms/general.html"><i class="fas fa-circle-o"></i> General Elements</a></li>
+					<li><a href="pages/forms/advanced.html"><i class="fas fa-circle-o"></i> Advanced Elements</a></li>
+					<li><a href="pages/forms/editors.html"><i class="fas fa-circle-o"></i> Editors</a></li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fas fa-table"></i> <span>Tables</span>
+					<span class="pull-right-container">
+              <i class="fas fa-angle-left pull-right"></i>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="pages/tables/simple.html"><i class="fas fa-circle-o"></i> Simple tables</a></li>
+					<li><a href="pages/tables/data.html"><i class="fas fa-circle-o"></i> Data tables</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="pages/calendar.html">
+					<i class="fas fa-calendar"></i> <span>Calendar</span>
+					<span class="pull-right-container">
+              <small class="label pull-right bg-red">3</small>
+              <small class="label pull-right bg-blue">17</small>
+            </span>
+				</a>
+			</li>
+			<li>
+				<a href="pages/mailbox/mailbox.html">
+					<i class="fas fa-envelope"></i> <span>Mailbox</span>
+					<span class="pull-right-container">
+              <small class="label pull-right bg-yellow">12</small>
+              <small class="label pull-right bg-green">16</small>
+              <small class="label pull-right bg-red">5</small>
+            </span>
+				</a>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fas fa-folder"></i> <span>Examples</span>
+					<span class="pull-right-container">
+              <i class="fas fa-angle-left pull-right"></i>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="pages/examples/invoice.html"><i class="fas fa-circle-o"></i> Invoice</a></li>
+					<li><a href="pages/examples/profile.html"><i class="fas fa-circle-o"></i> Profile</a></li>
+					<li><a href="pages/examples/login.html"><i class="fas fa-circle-o"></i> Login</a></li>
+					<li><a href="pages/examples/register.html"><i class="fas fa-circle-o"></i> Register</a></li>
+					<li><a href="pages/examples/lockscreen.html"><i class="fas fa-circle-o"></i> Lockscreen</a></li>
+					<li><a href="pages/examples/404.html"><i class="fas fa-circle-o"></i> 404 Error</a></li>
+					<li><a href="pages/examples/500.html"><i class="fas fa-circle-o"></i> 500 Error</a></li>
+					<li><a href="pages/examples/blank.html"><i class="fas fa-circle-o"></i> Blank Page</a></li>
+					<li><a href="pages/examples/pace.html"><i class="fas fa-circle-o"></i> Pace Page</a></li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="#">
+					<i class="fas fa-share"></i> <span>Multilevel</span>
+					<span class="pull-right-container">
+              <i class="fas fa-angle-left pull-right"></i>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="#"><i class="fas fa-circle-o"></i> Level One</a></li>
+					<li class="treeview">
+						<a href="#"><i class="fas fa-circle-o"></i> Level One
+							<span class="pull-right-container">
+                  <i class="fas fa-angle-left pull-right"></i>
+                </span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fas fa-circle-o"></i> Level Two</a></li>
+							<li class="treeview">
+								<a href="#"><i class="fas fa-circle-o"></i> Level Two
+									<span class="pull-right-container">
+                      <i class="fas fa-angle-left pull-right"></i>
+                    </span>
+								</a>
+								<ul class="treeview-menu">
+									<li><a href="#"><i class="fas fa-circle-o"></i> Level Three</a></li>
+									<li><a href="#"><i class="fas fa-circle-o"></i> Level Three</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#"><i class="fas fa-circle-o"></i> Level One</a></li>
+				</ul>
+			</li>
+			<li><a href="https://adminlte.io/docs"><i class="fas fa-book"></i> <span>Documentation</span></a></li>
+			<li class="header">LABELS</li>
+			<li><a href="#"><i class="fas fa-circle-o text-red"></i> <span>Important</span></a></li>
+			<li><a href="#"><i class="fas fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+			<li><a href="#"><i class="fas fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+		</ul>
+	</section>
+	<!-- /.sidebar -->
+</aside>
+
+<div class="content-wrapper">
+	<%- body %>
+</div>
+
+
+
+<!--
+    Client-side Templates
+    ========================
+
+    HTML templates are important prerequisites of modern, rich client applications.
+    To work their magic, frameworks like React, Vue.js, Angular, Ember, and Backbone
+    require that you load these templates client-side.
+
+    By default, your Gruntfile is configured to automatically load and precompile
+    client-side JST templates in your `assets/templates` folder, then
+    include them here automatically (between TEMPLATES and TEMPLATES END).
+
+    To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+    For example, here are a few things you could do:
+
+        + Import templates from other directories
+        + Use a different view engine (handlebars, dust, pug/jade, etc.)
+        + Internationalize your client-side templates using a server-side
+          stringfile before they're served.
+-->
+
+<!--TEMPLATES-->
+
+<!--TEMPLATES END-->
+
+
+<!--
+    Server-side View Locals
+    ========================
+
+    Sometimes, it's convenient to get access to your server-side view locals from
+    client-side JavaScript.  This can improve page load times, remove the need for
+    extra AJAX requests, and make your client-side code easier to understand and
+    to maintain.  Sails provides a simple mechanism for accessing dynamic view
+    locals: the "exposeLocalsToBrowser()" view partial.
+
+    For more information on using this built-in feature, see:
+    https://sailsjs.com/docs/concepts/views/locals#?escaping-untrusted-data-using-exposelocalstobrowser
+
+-->
+
+
+<!--
+
+  Client-side Javascript
+  ========================
+
+  You can always bring in JS files manually with `script` tags, or asynchronously
+  on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+  take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+  By default, files in your `assets/js` folder are included here
+  automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+  CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+  and concatenated into a single file.
+
+  To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+  For example, here are a few things you could do:
+
+      + Change the order of your scripts
+      + Import scripts from other directories
+      + Use a different preprocessor, like TypeScript
+
+-->
+<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.0/angular-animate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.3/angular-moment.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="/js/adminlte.min.js"></script>
+<!--SCRIPTS-->
+<script src="/dependencies/sails.io.js"></script>
+<script src="/js/adminlte.min.js"></script>
+<script src="/js/dashboard.js"></script>
+<!--SCRIPTS END-->
+<script src="/js/adminlte.min.js"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

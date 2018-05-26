@@ -63,6 +63,12 @@ module.exports = {
 		
 	},
 	
+	dashboard: async(req, res) => {
+		return res.view('data/dashboard',{
+			layout: 'layouts/jarvinsa-layout'
+		})
+	},
+	
 	subscribe: async(req, res) => {
 		if(!req.isSocket) {
 			return res.badRequest();

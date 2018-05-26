@@ -1,0 +1,29 @@
+
+<section class="content">
+	<div class="box box-primary">
+
+		<div class="box-header ui-sortable-handle" style="cursor: move;">
+			<i class="fas fa-bullhorn"></i>
+
+			<h3 class="box-title">Data from device</h3>
+		</div>
+
+		<div class="box-body" ng-controller="DataCtrl">
+			<ul class="todo-list ui-sortable">
+				<li ng-repeat="data in dataEntries | orderBy:'+':true" class="data-entry">
+					<span class="text">{{data.content}}</span>
+
+					<small class="label label-danger"><i class="fa fa-clock-o"></i>{{ data.updatedAt | date : 'short' }}</small>
+					<div class="tools">
+						{{data.device}}
+					</div>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+</section>
+
+
+
+

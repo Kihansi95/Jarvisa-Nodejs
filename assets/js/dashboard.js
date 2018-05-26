@@ -1,6 +1,6 @@
-var dataApp = angular.module('dataApp', ['ngResource', 'angularMoment', 'ngAnimate']);
+var app = angular.module('app', ['ngResource', 'angularMoment', 'ngAnimate']);
 
-dataApp.controller('DataCtrl', ['$scope', '$resource', '$timeout', function($scope, $resource, $timeout) {
+app.controller('DataCtrl', ['$scope', '$resource', '$timeout', function($scope, $resource, $timeout) {
 	
 	$scope.dataEntries = $resource('/data').query();
 	
