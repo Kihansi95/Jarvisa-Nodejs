@@ -62,7 +62,7 @@ module.exports.routes = {
 	//  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
 	//  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
 	//  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
-	'/ws/data/subscribe': 'DataController.subscribe'
+	'GET /ws/data': 'DataController.subscribe'
 	
 	
 	//  ╔╦╗╦╔═╗╔═╗

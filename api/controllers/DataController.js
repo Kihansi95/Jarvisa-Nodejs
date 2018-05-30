@@ -40,8 +40,8 @@ module.exports = {
 	
 	destroy: async(req, res) => {
 		try {
-			await Data.destroy({id: req.param('id')});
-			return res.ok();
+			let data = await Data.destroy({id: req.param('id')}).fetch();
+			return res.status(200).json(data);
 		} catch (err) {
 			sails.log.error(err.raw);
 			return res.status(500).json(err);

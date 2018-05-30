@@ -1,17 +1,44 @@
 var app = angular.module('app', ['ngResource', 'angularMoment', 'ngAnimate']);
 
-app.controller('DataCtrl', ['$scope', '$resource', '$timeout', function($scope, $resource, $timeout) {
+app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function($scope, $resource, $timeout, $http) {
 	
 	$scope.dataEntries = $resource('/data').query();
 	
-	io.socket.get('/ws/data/subscribe', function(data, jwr) {
+	io.socket.get('/ws/data', function(data, jwr) {
 		
-		io.socket.on('new_entry', function(new_data) {
+		io.socket.on('create', function(new_data) {
 			
 			$timeout(function() {
 				$scope.dataEntries.unshift(new_data);
 			});
 		});
 		
+		io.socket.on('delete', function(deleted_data) {
+			console.log('delete noti');
+			$timeout(function() {
+				let index = $scope.dataEntries.indexOf(deleted_data);
+				if(index > -1)
+					$scope.dataEntries.splice(index, 1);
+			});
+			
+		});
+		
 	});
+	
+	$scope.remove = function(data) {
+		
+		$http.delete('/api/data/'+data.id).then(function(data) {
+			console.log('http delete ', data)
+		}).catch(function(err) {
+			console.log('error on http delete ', err);
+		})
+	};
+	
+	$scope.create = function(data) {
+		$http.put('/api/data/', data).then(function(data) {
+			console.log('http create ', data);
+		}).catch(function(err) {
+			console.log('error on http create ', err);
+		})
+	};
 }]);

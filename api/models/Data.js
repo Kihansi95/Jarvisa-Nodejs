@@ -36,7 +36,12 @@ module.exports = {
 	},
 	
 	afterCreate: function(data, next) {
-		sails.sockets.broadcast('data', 'new_entry', data);
+		sails.sockets.broadcast('data', 'create', data);
+		return next();
+	},
+	
+	afterDestroy: (data, next) => {
+		sails.sockets.broadcast('data', 'delete', data);
 		return next();
 	}
 	
