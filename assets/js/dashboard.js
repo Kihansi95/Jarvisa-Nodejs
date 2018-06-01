@@ -1,11 +1,47 @@
-var app = angular.module('app', ['ngResource', 'angularMoment', 'ngAnimate']);
+var app = angular.module('app', ['ngResource', 'angularMoment', 'ngAnimate', 'chart.js']);
 
 app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function($scope, $resource, $timeout, $http) {
 	
 	$scope.dataEntries = $resource('/api/data').query();
 	
+	// chart
+	$scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+	$scope.option = {
+		responsive: true,
+		title: {
+			display: 'true',
+			text: 'Temperature evolution'
+		},
+		hover: {
+			mode: 'nearest',
+			intersect : 'true'
+		},
+		scale: {
+			xAxes: [{
+				display: true,
+				scaleLabel: {
+					display: true,
+					labelString: 'Time'
+				}
+			}],
+			yAxes: [{
+				display: true,
+				scaleLabel: {
+					display: true,
+					labelString: 'Value'
+				}
+			}]
+		}
+	};
+	$scope.datasets = {
+		label: 'temperature value',
+			backgroundColor: 'rgb(255, 99, 132)',
+			borderColor: 'rgb(255, 99, 132)',
+			data : $scope.dataEntries,
+			fill: 'origine'
+	};
 	
-	
+	// websocket
 	io.socket.get('/ws/data', function(data, jwr) {
 		io.socket.on('create', function(new_data) {
 			
@@ -30,7 +66,7 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 	
 	$scope.remove = function(data) {
 		
-		$http.delete('/api/data/'+data.id).then(function(data) {
+		$http.delete('/api/data'+(data === undefined ? '' : '/' + data.id )).then(function(data) {
 			console.log('http delete ', data)
 		}).catch(function(err) {
 			console.log('error on http delete ', err);
