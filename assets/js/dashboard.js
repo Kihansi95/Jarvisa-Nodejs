@@ -2,10 +2,11 @@ var app = angular.module('app', ['ngResource', 'angularMoment', 'ngAnimate']);
 
 app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function($scope, $resource, $timeout, $http) {
 	
-	$scope.dataEntries = $resource('/data').query();
+	$scope.dataEntries = $resource('/api/data').query();
+	
+	
 	
 	io.socket.get('/ws/data', function(data, jwr) {
-		
 		io.socket.on('create', function(new_data) {
 			
 			$timeout(function() {
@@ -14,15 +15,17 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 		});
 		
 		io.socket.on('delete', function(deleted_data) {
-			console.log('delete noti');
 			$timeout(function() {
-				let index = $scope.dataEntries.indexOf(deleted_data);
-				if(index > -1)
-					$scope.dataEntries.splice(index, 1);
+				/*
+				let data = $scope.dataEntries.filter(function (item) {
+					return item === deleted_data.id;
+				})[0];
+				*/
+				let index = $scope.dataEntries.findIndex( data => data.id === deleted_data.id );
+				$scope.dataEntries.splice(index, 1);
 			});
 			
 		});
-		
 	});
 	
 	$scope.remove = function(data) {
