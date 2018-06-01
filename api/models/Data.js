@@ -12,16 +12,13 @@ module.exports = {
 		//  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
 		//  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
 		//  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-		from: {
-			type: 'string'
-		},
 		
 		device : {
 			type: 'string'
 		},
 		
-		content: {
-			type: 'json'
+		value: {
+			type: 'number'
 		}
 		
 		//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
