@@ -58,6 +58,8 @@ module.exports.routes = {
 	'PUT        /api/data':         'DataController.create',
 	'GET        /api/data/:id':     'DataController.get',
 	'DELETE     /api/data/:id':     'DataController.destroy',
+	'GET        /api/statistic':    'DataController.statistic',
+	'GET        /api/statistic/:limit':    'DataController.statisticLimit',
 	
 	//  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
 	//  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

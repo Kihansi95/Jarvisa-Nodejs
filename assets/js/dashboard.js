@@ -3,9 +3,10 @@ var app = angular.module('app', ['ngResource', 'angularMoment', 'ngAnimate', 'ch
 app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function($scope, $resource, $timeout, $http) {
 	
 	$scope.dataEntries = $resource('/api/data').query();
+	$scope.statistic = $resource('/api/statistic').query();
 	
 	// chart
-	$scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+	$scope.labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
 	$scope.option = {
 		responsive: true,
 		title: {
@@ -47,16 +48,12 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 			
 			$timeout(function() {
 				$scope.dataEntries.unshift(new_data);
+				$scope.statistic.push(new_data.value);
 			});
 		});
 		
 		io.socket.on('delete', function(deleted_data) {
 			$timeout(function() {
-				/*
-				let data = $scope.dataEntries.filter(function (item) {
-					return item === deleted_data.id;
-				})[0];
-				*/
 				let index = $scope.dataEntries.findIndex( data => data.id === deleted_data.id );
 				$scope.dataEntries.splice(index, 1);
 			});

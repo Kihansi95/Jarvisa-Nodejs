@@ -38,6 +38,45 @@ module.exports = {
 		
 	},
 	
+	statisticLimit : async(req, res) => {
+		try {
+			
+			let tmp = await Data.find({select: ['value']}).limit(req.param('limit'));
+			let stat = [];
+			tmp.forEach((item) => {
+				stat.push(item.value);
+			});
+		
+			return res.status(200).json(stat);
+			
+		} catch (err) {
+			
+			sails.log.error(err.raw);
+			return res.status(500).json(err);
+			
+		}
+	},
+	
+	statistic: async (req, res) => {
+		
+		try {
+			
+			let tmp = await Data.find({select: ['value']});
+			let stat = [];
+			tmp.forEach((item) => {
+				stat.push(item.value);
+			});
+			
+			return res.status(200).json(stat);
+			
+		} catch (err) {
+			
+			sails.log.error(err.raw);
+			return res.status(500).json(err);
+			
+		}
+	},
+	
 	destroy: async(req, res) => {
 		try {
 			let data = await Data.destroy({id: req.param('id')}).fetch();
