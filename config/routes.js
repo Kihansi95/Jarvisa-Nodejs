@@ -59,7 +59,9 @@ module.exports.routes = {
 	'GET        /api/data/:id':     'DataController.get',
 	'DELETE     /api/data/:id':     'DataController.destroy',
 	'GET        /api/statistic':    'DataController.statistic',
+	
 	'GET        /api/statistic/:limit':    'DataController.statisticLimit',
+	'DELETE     /api/clean':        'DataController.clean',
 	
 	//  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
 	//  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

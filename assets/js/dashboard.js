@@ -7,7 +7,9 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 	
 	// chart
 	$scope.labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-	$scope.option = {
+	
+	$scope.options = {
+		animation: false,
 		responsive: true,
 		title: {
 			display: 'true',
@@ -17,7 +19,7 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 			mode: 'nearest',
 			intersect : 'true'
 		},
-		scale: {
+		scales: {
 			xAxes: [{
 				display: true,
 				scaleLabel: {
@@ -33,12 +35,14 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 				}
 			}]
 		}
+	
 	};
+	
 	$scope.datasets = {
 		label: 'temperature value',
 			backgroundColor: 'rgb(255, 99, 132)',
 			borderColor: 'rgb(255, 99, 132)',
-			data : $scope.dataEntries,
+			data : $scope.statistic,
 			fill: 'origine'
 	};
 	
@@ -48,19 +52,21 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 			
 			$timeout(function() {
 				$scope.dataEntries.unshift(new_data);
-				$scope.statistic.push(new_data.value);
+				$scope.statistic.unshift(new_data.value);
 			});
 		});
 		
 		io.socket.on('delete', function(deleted_data) {
 			$timeout(function() {
 				let index = $scope.dataEntries.findIndex( data => data.id === deleted_data.id );
+				//$scope.statistic.push(deleted_data.value);
 				$scope.dataEntries.splice(index, 1);
 			});
 			
 		});
 	});
 	
+	// data manipulate
 	$scope.remove = function(data) {
 		
 		$http.delete('/api/data'+(data === undefined ? '' : '/' + data.id )).then(function(data) {
@@ -77,4 +83,15 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 			console.log('error on http create ', err);
 		})
 	};
+	
+	$scope.clean = function() {
+		$http.delete('/api/clean').then(function(data) {
+			console.log('http clean ', data)
+		}).catch(function(err) {
+			console.log('error on http clean ', err);
+		})
+	};
+	
+	// ai command
+	$scope.enableAI = true;
 }]);

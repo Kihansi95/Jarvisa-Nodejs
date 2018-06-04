@@ -43,7 +43,7 @@ module.exports = {
 			
 			let tmp = await Data.find({select: ['value']}).limit(req.param('limit'));
 			let stat = [];
-			tmp.forEach((item) => {
+			tmp.forEach((item)  => {
 				stat.push(item.value);
 			});
 		
@@ -87,6 +87,16 @@ module.exports = {
 		}
 		
 		
+	},
+	
+	clean: async(req, res) => {
+		try {
+			await Data.destroy().fetch();
+			return res.status(200);
+		} catch (err) {
+			sails.log.error(err.raw);
+			return res.status(500).json(err);
+		}
 	},
 	
 	getAll: async(req, res) => {

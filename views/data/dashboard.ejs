@@ -21,6 +21,23 @@
 	<div class="col-lg-4">
 		<div class="box box-success collapsed-box">
 			<div class="box-header with-border">
+				<i class="fas fa-dashboard"></i>
+
+				<h3 class="box-title">AI Controller</h3>
+				<div class="box-tools pull-right">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="box-body" ng-controller="DataCtrl">
+				<h4>Learning</h4>
+				<input type="checkbox" data-toggle="toggle" ng-checked="enableAI" />
+
+			</div>
+		</div>
+		<div class="box box-success collapsed-box">
+			<div class="box-header with-border">
 				<i class="fas fa-code"></i>
 
 				<h3 class="box-title">Mock data</h3>
@@ -59,7 +76,7 @@
 				<i class="fas fa-bullhorn"></i>
 
 				<h3 class="box-title">Data from device</h3>
-				<button type="button" ng-show="dataEntries.length > 0" ng-click="remove()" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Remove all"><i class="fas fa-bomb"></i></button>
+				<button type="button" ng-show="dataEntries.length > 0" ng-click="clean()" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Remove all"><i class="fas fa-bomb"></i></button>
 			</div>
 
 			<div class="box-body" ng-controller="DataCtrl">
