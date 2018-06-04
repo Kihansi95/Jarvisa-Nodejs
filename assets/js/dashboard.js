@@ -59,8 +59,9 @@ app.controller('DataCtrl', ['$scope', '$resource', '$timeout', '$http', function
 		io.socket.on('delete', function(deleted_data) {
 			$timeout(function() {
 				let index = $scope.dataEntries.findIndex( data => data.id === deleted_data.id );
-				//$scope.statistic.push(deleted_data.value);
 				$scope.dataEntries.splice(index, 1);
+				index = $scope.statistic.findIndex(data => data === deleted_data.value);
+				$scope.statistic.splice(index, 1);
 			});
 			
 		});

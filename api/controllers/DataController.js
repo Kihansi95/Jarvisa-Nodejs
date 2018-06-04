@@ -91,10 +91,10 @@ module.exports = {
 	
 	clean: async(req, res) => {
 		try {
-			await Data.destroy().fetch();
+			let datas = await Data.destroy({}).fetch();
 			return res.status(200);
 		} catch (err) {
-			sails.log.error(err.raw);
+			sails.log.error(err);
 			return res.status(500).json(err);
 		}
 	},
